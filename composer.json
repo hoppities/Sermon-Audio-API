@@ -11,5 +11,13 @@
     "minimum-stability": "dev",
     "require": {
         "guzzlehttp/guzzle": "~5.3|~6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hoppities\\SermonAudio\\": "src"
+        }
     }
 }

@@ -1,4 +1,4 @@
-<?php namespace App\Hoppities\SermonAudio;
+<?php namespace Hoppities\SermonAudio;
 
 use GuzzleHttp\Client;
 

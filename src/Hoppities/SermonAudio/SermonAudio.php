@@ -1,28 +1,92 @@
-<?php namespace Hoppities\SermonAudio;
+<?php namespace App\Hoppities\SermonAudio;
 
-use Guzzle\Http\Client;
+use GuzzleHttp\Client;
 
 class SermonAudio {
 
 	protected $client;
 
-	public function __construct()
+	protected $apiKey;
+
+	public function __construct($apiKey)
 	{
+		$this->apiKey = $apiKey;
+
 		$this->client = new Client([
-			'base_uri' => 'https://api.sermonaudio.com/v1/node/sermons_by_source'
+			'headers' => ['X-Api-Key' => $this->apiKey ];
+			'base_uri' => 'https://api.sermonaudio.com/v1/node/'
 		]);
 	}
 
-	public function getSermons($broadcasterID)
+	public function getSermonInfo($sermonID)
 	{
-		$request = $this->client->get('sermons_by_source',[
-			'query' => [
-				'apikey' => 'D0DBA1BE-6E95-4233-B5C2-46A4A39CED64',
-				'page' => 1,
-				'pagesize' => 10,
-			]
-		]);
+		$params = ['sermonID' => $sermonID];
+		$request = $this->client->get( 'sermon_info', ['headers' => $headers, 'query' => $params ])->getBody();
 
-		dd($request->json());
+		return $request;
+	}
+
+	public function getSermonsBySource($sourceID)
+	{
+		$params = ['sourceID' => $sourceID];
+		$request = $this->client->get( 'sermons_by_source', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		return $request;
+	}
+
+	public function getSermonsBySpeaker($speakerDisplayName)
+	{
+		$params = ['speakerName' => $speakerDisplayName];
+		$request = $this->client->get( 'sermons_by_speaker', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		return $request;
+	}
+
+	// Array of params
+	public function getSermonsByBibref($paramsArr)
+	{
+		$params = $paramsArr;
+		$request = $this->client->get( 'sermons_by_bibref', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		return $request;
+	}
+
+	public function getBibrefBooksBySource($sourceID)
+	{
+		$params = ['sourceID' => $sourceID];
+		$request = $this->client->get( 'bibref_books_by_source', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		return $request;
+	}
+
+	public function getBibrefChaptersBySource($sourceID)
+	{
+		$params = ['sourceID' => $sourceID];
+		$request = $this->client->get( 'bibref_chapters_by_source', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		return $request;
+	}
+
+	public function getGalleryItemsForCategory($categoryName, $includeCoverImage = true)
+	{
+		$params = ['category' => $categoryName, 'include_cover_image' = $includeCoverImage];
+		$request = $this->client->get( 'gallery_items_for_category', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		return $request;
+	}
+
+	public function getSourceInfo($sourceID)
+	{
+		$params = ['sourceID' => $sourceID];
+		$request = $this->client->get( 'source_info', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		return $request;
+	}
+
+	public function getWebcastsInProgress()
+	{
+		$request = $this->client->get( 'webcasts_in_progress', ['headers' => $headers])->getBody();
+
+		return $request;
 	}
 }

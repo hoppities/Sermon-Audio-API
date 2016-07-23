@@ -4,7 +4,9 @@ This is a simple wrapper for many of the methods available in the Sermon Audio A
 
 ## Installation
 
-TODO: Describe the installation process
+```
+composer require hoppities\sermon-audio
+```
 
 ## Usage
 

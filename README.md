@@ -1,4 +1,4 @@
-# Sermon Audip API PHP Wrapper
+# Sermon Audio API PHP Wrapper
 
 This is a simple wrapper for many of the methods available in the Sermon Audio API.
 

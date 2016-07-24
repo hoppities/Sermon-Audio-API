@@ -2,7 +2,7 @@
     "name": "hoppities/sermon-audio",
     "description": "A wrapper for the SermonAudio Json API",
     "license": "MIT",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "authors": [
         {
             "name": "Daniel Hopkins",

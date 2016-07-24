@@ -5,7 +5,7 @@ namespace Hoppities\SermonAudio;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
-class CountryStateServiceProvider extends ServiceProvider
+class SermonAudioServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
@@ -29,7 +29,8 @@ class CountryStateServiceProvider extends ServiceProvider
             __DIR__ . '/config/sermonaudio.php' => config_path('sermonaudio.php'),
         ], 'config');
 
-        AliasLoader::getInstance()->alias('SermonAudio', 'Hoppities\SermonAudio\SermonAudio');
+        // Load the facade
+        AliasLoader::getInstance()->alias('SermonAudio', 'Hoppities\SermonAudio\SermonAudioFacade');
     }
 
     /**

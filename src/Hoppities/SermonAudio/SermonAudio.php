@@ -8,76 +8,77 @@ class SermonAudio {
 
 	protected $apiKey;
 
-	public function __construct($apiKey)
+	public function __construct($apiKey, $sourceID, $baseUri)
 	{
 		$this->apiKey = $apiKey;
+		$this->sourceID = $sourceID;
 
 		$this->client = new Client([
-			'headers' => ['X-Api-Key' => $this->apiKey ];
-			'base_uri' => 'https://api.sermonaudio.com/v1/node/'
+			'headers' => ['X-Api-Key' => $this->apiKey ],
+			'base_uri' => $baseUri
 		]);
 	}
 
-	public function getSermonInfo($sermonID)
+	public function getSermonInfo($userParams)
 	{
-		$params = ['sermonID' => $sermonID];
+		$params = $this->setParams($userParams);
 		$request = $this->client->get( 'sermon_info', ['headers' => $headers, 'query' => $params ])->getBody();
 
 		return $request;
 	}
 
-	public function getSermonsBySource($sourceID)
+	public function getSermonsBySource($userParams = null)
 	{
-		$params = ['sourceID' => $sourceID];
+		$params = $this->setParams($userParams, true);
 		$request = $this->client->get( 'sermons_by_source', ['headers' => $headers, 'query' => $params ])->getBody();
 
 		return $request;
 	}
 
-	public function getSermonsBySpeaker($speakerDisplayName)
+	public function getSermonsBySpeaker($userParams)
 	{
-		$params = ['speakerName' => $speakerDisplayName];
+		$params = $this->setParams($userParams);
 		$request = $this->client->get( 'sermons_by_speaker', ['headers' => $headers, 'query' => $params ])->getBody();
 
 		return $request;
 	}
 
 	// Array of params
-	public function getSermonsByBibref($paramsArr)
+	public function getSermonsByBibref($userParams)
 	{
-		$params = $paramsArr;
+		$params = $this->setParams($userParams);
 		$request = $this->client->get( 'sermons_by_bibref', ['headers' => $headers, 'query' => $params ])->getBody();
 
 		return $request;
 	}
 
-	public function getBibrefBooksBySource($sourceID)
+	public function getBibrefBooksBySource($userParams)
 	{
-		$params = ['sourceID' => $sourceID];
+		$params = $this->setParams($userParams);
 		$request = $this->client->get( 'bibref_books_by_source', ['headers' => $headers, 'query' => $params ])->getBody();
 
 		return $request;
 	}
 
-	public function getBibrefChaptersBySource($sourceID)
+	public function getBibrefChaptersBySource($userParams)
 	{
-		$params = ['sourceID' => $sourceID];
+		$params = $this->setParams($userParams);
 		$request = $this->client->get( 'bibref_chapters_by_source', ['headers' => $headers, 'query' => $params ])->getBody();
 
 		return $request;
 	}
 
-	public function getGalleryItemsForCategory($categoryName, $includeCoverImage = true)
+	public function getGalleryItemsForCategory($userParams)
 	{
-		$params = ['category' => $categoryName, 'include_cover_image' = $includeCoverImage];
+		$params = $this->setParams($userParams);
 		$request = $this->client->get( 'gallery_items_for_category', ['headers' => $headers, 'query' => $params ])->getBody();
 
 		return $request;
 	}
 
-	public function getSourceInfo($sourceID)
+	public function getSourceInfo($userParams)
 	{
-		$params = ['sourceID' => $sourceID];
+		$params = $this->setParams($userParams);
 		$request = $this->client->get( 'source_info', ['headers' => $headers, 'query' => $params ])->getBody();
 
 		return $request;
@@ -88,5 +89,23 @@ class SermonAudio {
 		$request = $this->client->get( 'webcasts_in_progress', ['headers' => $headers])->getBody();
 
 		return $request;
+	}
+
+	private function setParams($paramsToSet = null, $setSourceID = false)
+	{
+		if (isset($paramsToSet))
+		{
+			foreach ($paramsToSet as $key => $value)
+			{
+				$params[$key] => $value;
+			}
+		}
+
+		if ($setSoureID)
+		{
+			$params['source_id'] = $this->soureID;
+		}
+
+		return $params;
 	}
 }

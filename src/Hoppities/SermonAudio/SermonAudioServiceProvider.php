@@ -15,7 +15,7 @@ class SermonAudioServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('SermonAudio', function () {
-            return new SermonAudio(config('sermonaudio.apiKey'));
+            return new SermonAudio(config('sermonaudio.apiKey'), config('sermonaudio.sourceID'), config('sermonaudio.baseRoute'));
         });
         $this->mergeConfigFrom(__DIR__ . '/config/sermonaudio.php', 'sermonaudio');
     }
@@ -31,15 +31,5 @@ class SermonAudioServiceProvider extends ServiceProvider
 
         // Load the facade
         AliasLoader::getInstance()->alias('SermonAudio', 'Hoppities\SermonAudio\SermonAudioFacade');
-    }
-
-    /**
-     * Get the active router.
-     *
-     * @return Router
-     */
-    protected function getRouter()
-    {
-        return $this->app['router'];
     }
 }

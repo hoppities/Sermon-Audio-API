@@ -2,11 +2,11 @@
     "name": "hoppities/sermon-audio",
     "description": "A wrapper for the SermonAudio Json API",
     "license": "MIT",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "authors": [
         {
             "name": "Daniel Hopkins",
-            "email": "danielc.hopkins@gmail.com"
+            "email": "daniel@hoppities.com"
         }
     ],
     "minimum-stability": "dev",

@@ -28,7 +28,7 @@ class SermonAudioServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config/sermonaudio.php' => config_path('sermonaudio.php'),
         ], 'config');
-
+        
         // Load the facade
         AliasLoader::getInstance()->alias('SermonAudio', 'Hoppities\SermonAudio\SermonAudioFacade');
     }

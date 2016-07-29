@@ -14,8 +14,6 @@ After your composer dependencies finish, you will need to add the service provid
 Hoppities\SermonAudio\SermonAudioServiceProvider::class,
 ```
 
-The facade is set to automatically load.
-
 Now, you can publish the config file for the package by running:
 
 ```
@@ -25,10 +23,14 @@ php artisan vendor:publish
 ## Usage
 
 ```
-use Hoppities\SermonAudio\SermonAudio
+use SermonAudio
 ```
 
 Then, just call any of the methods in that file.
+
+```
+SermonAudio::getSermonsBySource();
+```
 
 ## License
 

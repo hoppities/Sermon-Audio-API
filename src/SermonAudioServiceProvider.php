@@ -15,7 +15,7 @@ class SermonAudioServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('SermonAudio', function () {
-            return new SermonAudio(config('sermonaudio.apiKey'), config('sermonaudio.sourceID'), config('sermonaudio.baseRoute'));
+            return new SermonAudio(config('sermonaudio.baseRoute'));
         });
         $this->mergeConfigFrom(__DIR__ . '/config/sermonaudio.php', 'sermonaudio');
     }

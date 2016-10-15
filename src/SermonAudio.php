@@ -35,7 +35,7 @@ class SermonAudio {
 	public function GetSermonsBySource($userParams = null)
 	{
 		$params = $this->setParams($userParams, true);
-		// dd($params);
+
 		$request = $this->client->get( 'sermons_by_source', ['query' => $params ]);
 
 		if ($request)
@@ -49,7 +49,7 @@ class SermonAudio {
 	public function GetSermonsBySpeaker($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'sermons_by_speaker', ['headers' => $headers, 'query' => $params ])->getBody();
+		$request = $this->client->get( 'sermons_by_speaker', ['query' => $params ])->getBody();
 
 		return $request;
 	}
@@ -58,7 +58,7 @@ class SermonAudio {
 	public function GetSermonsByBibref($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'sermons_by_bibref', ['headers' => $headers, 'query' => $params ])->getBody();
+		$request = $this->client->get( 'sermons_by_bibref', ['query' => $params ])->getBody();
 
 		return $request;
 	}
@@ -66,7 +66,7 @@ class SermonAudio {
 	public function GetBibrefBooksBySource($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'bibref_books_by_source', ['headers' => $headers, 'query' => $params ])->getBody();
+		$request = $this->client->get( 'bibref_books_by_source', ['query' => $params ])->getBody();
 
 		return $request;
 	}
@@ -74,7 +74,7 @@ class SermonAudio {
 	public function GetBibrefChaptersBySource($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'bibref_chapters_by_source', ['headers' => $headers, 'query' => $params ])->getBody();
+		$request = $this->client->get( 'bibref_chapters_by_source', ['query' => $params ])->getBody();
 
 		return $request;
 	}
@@ -82,7 +82,7 @@ class SermonAudio {
 	public function GetGalleryItemsForCategory($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'gallery_items_for_category', ['headers' => $headers, 'query' => $params ])->getBody();
+		$request = $this->client->get( 'gallery_items_for_category', ['query' => $params ])->getBody();
 
 		return $request;
 	}
@@ -90,7 +90,7 @@ class SermonAudio {
 	public function GetSourceInfo($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'source_info', ['headers' => $headers, 'query' => $params ])->getBody();
+		$request = $this->client->get( 'source_info', ['query' => $params ])->getBody();
 
 		return $request;
 	}

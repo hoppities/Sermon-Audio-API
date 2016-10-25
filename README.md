@@ -14,10 +14,13 @@ After your composer dependencies finish, you will need to add the service provid
 Hoppities\SermonAudio\SermonAudioServiceProvider::class,
 ```
 
-Now, you can publish the config file for the package by running:
+In your application, call `SermonAudio::Initialize()` to set up your facade.
 
 ```
-php artisan vendor:publish
+$apiKey = YOUR__KEY_HERE;
+$sourceID = YOUR_SOURCE_ID_HERE;
+
+SermonAudio::Initialize($apiKey, $sourceID);
 ```
 
 ## Usage
@@ -31,6 +34,8 @@ Then, just call any of the methods in that file.
 ```
 SermonAudio::getSermonsBySource();
 ```
+
+Parameters should be sent as an associative array to any API call, so the above call will take an associative array and then build the parameters for your query.
 
 ## License
 

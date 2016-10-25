@@ -29,13 +29,17 @@ class SermonAudio {
 		$params = $this->setParams($userParams);
 		$request = $this->client->get( 'sermon_info',['query' => $params ])->getBody();
 
+		if ($request)
+		{
+			$request = $this->parseBody($request);
+		}
+
 		return $request;
 	}
 
 	public function GetSermonsBySource($userParams = null)
 	{
 		$params = $this->setParams($userParams, true);
-
 		$request = $this->client->get( 'sermons_by_source', ['query' => $params ]);
 
 		if ($request)
@@ -49,7 +53,12 @@ class SermonAudio {
 	public function GetSermonsBySpeaker($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'sermons_by_speaker', ['query' => $params ])->getBody();
+		$request = $this->client->get( 'sermons_by_speaker', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		if ($request)
+		{
+			$request = $this->parseBody($request);
+		}
 
 		return $request;
 	}
@@ -58,7 +67,12 @@ class SermonAudio {
 	public function GetSermonsByBibref($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'sermons_by_bibref', ['query' => $params ])->getBody();
+		$request = $this->client->get( 'sermons_by_bibref', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		if ($request)
+		{
+			$request = $this->parseBody($request);
+		}
 
 		return $request;
 	}
@@ -66,7 +80,12 @@ class SermonAudio {
 	public function GetBibrefBooksBySource($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'bibref_books_by_source', ['query' => $params ])->getBody();
+		$request = $this->client->get( 'bibref_books_by_source', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		if ($request)
+		{
+			$request = $this->parseBody($request);
+		}
 
 		return $request;
 	}
@@ -74,7 +93,12 @@ class SermonAudio {
 	public function GetBibrefChaptersBySource($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'bibref_chapters_by_source', ['query' => $params ])->getBody();
+		$request = $this->client->get( 'bibref_chapters_by_source', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		if ($request)
+		{
+			$request = $this->parseBody($request);
+		}
 
 		return $request;
 	}
@@ -82,7 +106,12 @@ class SermonAudio {
 	public function GetGalleryItemsForCategory($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'gallery_items_for_category', ['query' => $params ])->getBody();
+		$request = $this->client->get( 'gallery_items_for_category', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		if ($request)
+		{
+			$request = $this->parseBody($request);
+		}
 
 		return $request;
 	}
@@ -90,7 +119,12 @@ class SermonAudio {
 	public function GetSourceInfo($userParams)
 	{
 		$params = $this->setParams($userParams);
-		$request = $this->client->get( 'source_info', ['query' => $params ])->getBody();
+		$request = $this->client->get( 'source_info', ['headers' => $headers, 'query' => $params ])->getBody();
+
+		if ($request)
+		{
+			$request = $this->parseBody($request);
+		}
 
 		return $request;
 	}
@@ -98,6 +132,11 @@ class SermonAudio {
 	public function GetWebcastsInProgress()
 	{
 		$request = $this->client->get( 'webcasts_in_progress', ['headers' => $headers])->getBody();
+
+		if ($request)
+		{
+			$request = $this->parseBody($request);
+		}
 
 		return $request;
 	}
